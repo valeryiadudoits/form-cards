@@ -45,14 +45,14 @@ export class FormCreationService {
     const requestBody = this._usersForm.getRawValue();
     this._http.post<{ region: string }>('/api/submitForm', { requestBody })
       .pipe(
-        catchError(err => {
-          return EMPTY;
-        }),
         tap({
           next: () => {
             this._showToast = true;
             this._usersForm.clear();
             this.addFormGroup();
+          },
+          error: err => {
+            console.log('Error: ', err)
           }
         }),
       ).subscribe();
