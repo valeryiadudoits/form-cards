@@ -1,0 +1,39 @@
+@if (userGroup) {
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="userGroup">
+        <div class="mb-3">
+          <label for="country"
+                 class="form-label">Country</label>
+          <input type="text"
+                 class="form-control"
+                 id="country"
+                 list="datalistOptions"
+                 placeholder="Type to search..."
+                 appValidateInput="country"
+                 formControlName="country">
+          <datalist id="datalistOptions">
+            @for (country of countries; track country) {
+              <option [value]="country">
+                }
+          </datalist>
+        </div>
+        <div class="mb-3">
+          <label for="username"
+                 class="form-label">Username</label>
+          <input type="text"
+                 class="form-control"
+                 id="username"
+                 placeholder="Enter username..."
+                 appValidateInput="username"
+                 formControlName="username">
+        </div>
+        <div class="mb-3">
+          <app-datepicker [calendarControl]="calendarControl"
+                          [disabledDatepicker]="disabledCard"></app-datepicker>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+

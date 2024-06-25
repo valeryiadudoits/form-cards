@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="mb-2">
+    @if (timer$) {
+      <div class="d-flex align-items-center">
+        <button
+          type="button"
+          class="btn  btn-danger"
+          (click)="onTimerCancel()">Cancel
+        </button>
+        <div class="ms-2">{{ timer$ | async }}</div>
+      </div>
+    } @else {
+      <div class="d-flex align-items-center">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="formArray.invalid"
+          (click)="onSubmitBtnClicked()">Submit all forms
+        </button>
+        @if (showToast) {
+          <ngb-toast class="bg-success text-light ms-2"
+                     (hidden)="onHideToast()">
+            Form was send successfully
+          </ngb-toast>
+        }
+      </div>
+    }
+  </div>
+  <div class="container-cards">
+    @for (group of cardGroup; track group.controls) {
+      <app-card
+        [userGroup]="group"
+        [disabledCard]="timer$"></app-card>
+    }
+    <app-adding-card (addedNewUser)="addNewUser()"
+                     [disabled]="formArray.invalid || formLimitExceed || !!timer$"></app-adding-card>
+  </div>
+</div>

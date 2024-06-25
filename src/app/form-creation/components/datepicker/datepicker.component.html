@@ -1,0 +1,25 @@
+<div class="col-12">
+  <p class="form-label">Birthday</p>
+  <div class="input-group">
+    <input
+      #calendar
+      appValidateInput="birthday"
+      class="form-control"
+      placeholder="yyyy-mm-dd"
+      name="dp"
+      ngbDatepicker
+      #d="ngbDatepicker"
+      [maxDate]="yesterday"
+      [formControl]="calendarControl"
+      [disabled]="disabledDatepicker"
+      (dateSelect)="focusInput(calendar)"
+    />
+    <button class="btn btn-outline-secondary"
+            (click)="d.toggle()" type="button">
+      <img src="../../../../assets/icons/ic-calendar.svg"
+           alt="calendar"
+           height="16"
+           width="16">
+    </button>
+  </div>
+</div>
